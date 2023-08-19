@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:portfolio/ui/Home.dart';
 
 import 'color_schemes.dart';
@@ -13,14 +14,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(
           useMaterial3: true,
           colorScheme: lightColorScheme,
           fontFamily: "Inter"
       ),
       // darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-      home: const Home(),
+      home: Home(),
     );
   }
 }

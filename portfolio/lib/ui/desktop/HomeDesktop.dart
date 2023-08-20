@@ -100,15 +100,41 @@ class HomeDesktop extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                            "Hello! I am",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w700,
-                              height: 1.08,
-                            )
+                        const SizedBox(width: 0.0, height: 16.0),
+                        Row(
+                          children: [
+                            SizedBox(
+                              height: 48,
+                              child: DefaultTextStyle(
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 48,
+                                    fontWeight: FontWeight.w700,
+                                    height: 1.08,
+                                  ),
+                                  child: AnimatedTextKit(
+                                      repeatForever: true,
+                                      animatedTexts: [
+                                        RotateAnimatedText("Hello", duration: const Duration(seconds: 2), rotateOut: false),
+                                        RotateAnimatedText("안녕하세요", duration: const Duration(seconds: 2), rotateOut: false),
+                                        RotateAnimatedText("こんにちは", duration: const Duration(seconds: 2), rotateOut: false),
+                                        RotateAnimatedText("你好", duration: const Duration(seconds: 2), rotateOut: false),
+                                      ]
+                                  )
+                              ),
+                            ),
+                            const Text(
+                                "! I am",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 48,
+                                  fontWeight: FontWeight.w700,
+                                  height: 1.08,
+                                )
+                            ),
+                          ],
                         ),
                         AnimatedTextKit(
                             repeatForever: true,
@@ -155,7 +181,7 @@ class HomeDesktop extends StatelessWidget {
                 color: Theme.of(context).colorScheme.surfaceVariant,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Padding(padding: EdgeInsets.all(16)),
                     Text(
@@ -171,15 +197,18 @@ class HomeDesktop extends StatelessWidget {
                     ),
                     const Padding(padding: EdgeInsets.all(24)),
                     Obx(() =>
-                        Text(
-                          controller.currentProject.value.name,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 36,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            height: 1.22,
+                        AnimatedOpacity(
+                          duration: const Duration(seconds: 1),
+                          opacity: controller.textOpacity.value,
+                          child: Text(
+                            controller.currentProject.value.name,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 36,
+                              fontWeight: FontWeight.w400,
+                              height: 1.22,
+                            ),
                           ),
                         )
                     ),
@@ -202,9 +231,7 @@ class HomeDesktop extends StatelessWidget {
                             ),
                           ),
                         ),
-                        AnimatedSwitcher(
-                          duration: const Duration(microseconds: 256),
-                          child: ClipRRect(
+                        ClipRRect(
                             borderRadius: BorderRadius.circular(48),
                             child: Obx(() =>
                                 Image.asset(
@@ -214,7 +241,6 @@ class HomeDesktop extends StatelessWidget {
                                     isAntiAlias: true
                                 )
                             )
-                          )
                         ),
                         InkWell(
                           borderRadius: const BorderRadius.all(Radius.circular(100)),
@@ -230,6 +256,21 @@ class HomeDesktop extends StatelessWidget {
                             ),
                           ),
                         ),
+                      ],
+                    ),
+                    const Padding(padding: EdgeInsets.all(16)),
+                    Wrap(
+                      children: [
+                        Obx(() =>
+                            FilledButton(
+                                onPressed: () async {
+                                  if (!await launchUrl(Uri.parse(controller.currentProject.value.url))) {
+                                    throw Exception('Could not launch url');
+                                  }
+                                },
+                                child: Text(controller.currentProject.value.type.name)
+                            )
+                        )
                       ],
                     ),
                     const Padding(padding: EdgeInsets.all(16)),

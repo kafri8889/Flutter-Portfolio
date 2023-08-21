@@ -61,6 +61,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
    assets:
+     - assets/images/android.png
+     - assets/images/jetpack_compose.png
+     - assets/images/dicoding_android_pemula.png
+     - assets/images/dicoding_kotlin.png
      - assets/images/bookman.png
      - assets/images/calculator.png
      - assets/images/csnake.png
@@ -83,6 +87,7 @@ flutter:
      - assets/svg/linkedin.svg
      - assets/svg/twitter.svg
      - assets/svg/android.svg
+     - assets/svg/kotlin_icon.svg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

@@ -19,7 +19,6 @@ class HomeMobile extends StatelessWidget {
           itemCount: 1,
           itemBuilder: (BuildContext context, int index) {
             return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /**
                  * Top
@@ -173,6 +172,91 @@ class HomeMobile extends StatelessWidget {
                       ],
                     ),
                   ),
+                ),
+                const Padding(padding: EdgeInsets.all(24)),
+                /**
+                 * Skills
+                 */
+                Container(
+                  color: Theme.of(context).colorScheme.tertiaryContainer,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Padding(padding: EdgeInsets.all(16)),
+                      Text(
+                        'Skills',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 48,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w700,
+                          height: 1.08,
+                        ),
+                      ),
+                      const Padding(padding: EdgeInsets.all(16)),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              "images/jetpack_compose.png",
+                              width: 72,
+                              height: 72,
+                            ),
+                            const Padding(padding: EdgeInsets.all(16)),
+                            Image.asset(
+                              "images/android.png",
+                              width: 72,
+                              height: 72,
+                            ),
+                            const Padding(padding: EdgeInsets.all(16)),
+                            SvgPicture.asset(
+                              "svg/kotlin_icon.svg",
+                              width: 72,
+                              height: 72,
+                            )
+                          ]
+                      ),
+                      const Padding(padding: EdgeInsets.all(16)),
+                    ],
+                  ),
+                ),
+                const Padding(padding: EdgeInsets.all(16)),
+                /**
+                 * Certificates
+                 */
+                Text(
+                  'Certificates',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 48,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w700,
+                    height: 1.08,
+                  ),
+                ),
+                const Padding(padding: EdgeInsets.all(16)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Image.asset(
+                      "images/dicoding_kotlin.jpg",
+                      width: context.width / 2.5,
+                      height: (context.width / 2.5 * 3) / 4,
+                      filterQuality: FilterQuality.high,
+                      isAntiAlias: true,
+                    ),
+                    Image.asset(
+                      "images/dicoding_android_pemula.jpg",
+                      width: context.width / 2.5,
+                      height: (context.width / 2.5 * 3) / 4,
+                      filterQuality: FilterQuality.high,
+                      isAntiAlias: true,
+                    )
+                  ],
                 ),
                 const Padding(padding: EdgeInsets.all(16)),
                 /**

@@ -30,7 +30,7 @@ class HomeController extends GetxController {
 
   void animateTextChange(void Function() onFinish) async {
     textOpacity.value = 0;
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 0)); // Disable animation
     onFinish();
     textOpacity.value = 1;
   }

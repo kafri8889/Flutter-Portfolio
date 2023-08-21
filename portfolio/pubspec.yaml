@@ -61,6 +61,19 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
    assets:
+     - assets/images/bookman.png
+     - assets/images/calculator.png
+     - assets/images/csnake.png
+     - assets/images/dujer.png
+     - assets/images/md2compose.png
+     - assets/images/md3compose.png
+     - assets/images/md3android.png
+     - assets/images/npuzzle.png
+     - assets/images/projman.png
+     - assets/images/remindme.png
+     - assets/images/saku.png
+     - assets/images/staver.png
+     - assets/images/tictactoe.png
      - assets/images/musicompose.png
      - assets/images/mathq.png
      - assets/svg/anafthdev_logo.svg

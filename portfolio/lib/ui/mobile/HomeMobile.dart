@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../controller/HomeController.dart';
@@ -12,6 +13,7 @@ class HomeMobile extends StatelessWidget {
   HomeMobile({Key? key, required this.controller}) : super(key: key);
 
   final HomeController controller;
+  bool blockScroll = false;
 
   final emailSenderNameController = TextEditingController();
   final emailSubjectController = TextEditingController();
@@ -22,6 +24,7 @@ class HomeMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView.builder(
+          physics: blockScroll ? const NeverScrollableScrollPhysics() : const ScrollPhysics(),
           itemCount: 1,
           itemBuilder: (BuildContext context, int index) {
             return Column(
@@ -35,7 +38,7 @@ class HomeMobile extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Padding(padding: EdgeInsets.all(32.0)),
+                        const Padding(padding: EdgeInsets.all(16.0)),
                         SvgPicture.asset(
                           "${releasePath}assets/svg/anafthdev_logo.svg",
                           width: 56,
@@ -61,7 +64,7 @@ class HomeMobile extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Padding(padding: EdgeInsets.all(8)),
+                        const Padding(padding: EdgeInsets.all(4)),
                         InkWell(
                           borderRadius: const BorderRadius.all(Radius.circular(100)),
                           onTap: () async {
@@ -70,7 +73,7 @@ class HomeMobile extends StatelessWidget {
                             }
                           },
                           child: Padding(
-                            padding: const EdgeInsets.all(6.0),
+                            padding: const EdgeInsets.all(4),
                             child: SvgPicture.asset(
                               "${releasePath}assets/svg/twitter.svg",
                               width: 32,
@@ -78,7 +81,7 @@ class HomeMobile extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Padding(padding: EdgeInsets.all(8)),
+                        const Padding(padding: EdgeInsets.all(4)),
                         InkWell(
                           borderRadius: const BorderRadius.all(Radius.circular(100)),
                           onTap: () async {
@@ -87,7 +90,7 @@ class HomeMobile extends StatelessWidget {
                             }
                           },
                           child: Padding(
-                            padding: const EdgeInsets.all(6.0),
+                            padding: const EdgeInsets.all(4),
                             child: SvgPicture.asset(
                               "${releasePath}assets/svg/linkedin.svg",
                               width: 32,
@@ -95,7 +98,7 @@ class HomeMobile extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Padding(padding: EdgeInsets.all(8)),
+                        const Padding(padding: EdgeInsets.all(4)),
                         InkWell(
                           borderRadius: const BorderRadius.all(Radius.circular(100)),
                           onTap: () async {
@@ -104,7 +107,7 @@ class HomeMobile extends StatelessWidget {
                             }
                           },
                           child: Padding(
-                            padding: const EdgeInsets.all(6.0),
+                            padding: const EdgeInsets.all(4),
                             child: SvgPicture.asset(
                               "${releasePath}assets/svg/github.svg",
                               width: 32,
@@ -112,21 +115,21 @@ class HomeMobile extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Padding(padding: EdgeInsets.all(32))
+                        const Padding(padding: EdgeInsets.all(8))
                       ],
                     )
                   ],
                 ),
                 const Padding(padding: EdgeInsets.all(16)),
                 Padding(
-                    padding: const EdgeInsets.only(left: 72, right: 72),
+                    padding: const EdgeInsets.only(left: 48, right: 48),
                     child: SvgPicture.asset(
                         "${releasePath}assets/svg/android.svg"
                     )
                 ),
                 FittedBox(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 72, right: 72),
+                    padding: const EdgeInsets.only(left: 48, right: 48),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -139,7 +142,7 @@ class HomeMobile extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     color: Colors.black,
-                                    fontSize: 48,
+                                    fontSize: 32,
                                     fontWeight: FontWeight.w700,
                                     height: 1.08,
                                   ),
@@ -159,7 +162,7 @@ class HomeMobile extends StatelessWidget {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 48,
+                                  fontSize: 32,
                                   fontWeight: FontWeight.w700,
                                   height: 1.08,
                                 )
@@ -174,7 +177,7 @@ class HomeMobile extends StatelessWidget {
                                   speed: const Duration(milliseconds: 128),
                                   textStyle: TextStyle(
                                     color: Theme.of(context).primaryColor,
-                                    fontSize: 48,
+                                    fontSize: 32,
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w700,
                                     height: 1.08,
@@ -188,7 +191,7 @@ class HomeMobile extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 24,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w400
                             )
                         )
@@ -212,7 +215,7 @@ class HomeMobile extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
-                          fontSize: 48,
+                          fontSize: 32,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
                           height: 1.08,
@@ -255,7 +258,7 @@ class HomeMobile extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
-                    fontSize: 48,
+                    fontSize: 32,
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w700,
                     height: 1.08,
@@ -265,19 +268,41 @@ class HomeMobile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Image.asset(
-                      "${releasePath}assets/images/dicoding_kotlin.jpg",
-                      width: context.width / 2.5,
-                      height: (context.width / 2.5 * 3) / 4,
-                      filterQuality: FilterQuality.high,
-                      isAntiAlias: true,
+                    PinchZoomReleaseUnzoomWidget(
+                        minScale: 1,
+                        maxScale: 4,
+                        twoFingersOn: () {
+                          blockScroll = true;
+                        },
+                        twoFingersOff: () => Future.delayed(
+                          PinchZoomReleaseUnzoomWidget.defaultResetDuration,
+                              () { blockScroll = false; },
+                        ),
+                        child: Image.asset(
+                          "${releasePath}assets/images/dicoding_kotlin.jpg",
+                          width: context.width / 2.5,
+                          height: (context.width / 2.5 * 3) / 4,
+                          filterQuality: FilterQuality.high,
+                          isAntiAlias: true,
+                        )
                     ),
-                    Image.asset(
-                      "${releasePath}assets/images/dicoding_android_pemula.jpg",
-                      width: context.width / 2.5,
-                      height: (context.width / 2.5 * 3) / 4,
-                      filterQuality: FilterQuality.high,
-                      isAntiAlias: true,
+                    PinchZoomReleaseUnzoomWidget(
+                        minScale: 1,
+                        maxScale: 4,
+                        twoFingersOn: () {
+                          blockScroll = true;
+                        },
+                        twoFingersOff: () => Future.delayed(
+                          PinchZoomReleaseUnzoomWidget.defaultResetDuration,
+                              () { blockScroll = false; },
+                        ),
+                        child: Image.asset(
+                          "${releasePath}assets/images/dicoding_android_pemula.jpg",
+                          width: context.width / 2.5,
+                          height: (context.width / 2.5 * 3) / 4,
+                          filterQuality: FilterQuality.high,
+                          isAntiAlias: true,
+                        )
                     )
                   ],
                 ),
@@ -289,7 +314,7 @@ class HomeMobile extends StatelessWidget {
                   color: Theme.of(context).colorScheme.surfaceVariant,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const Padding(padding: EdgeInsets.all(16)),
                       Text(
@@ -297,7 +322,7 @@ class HomeMobile extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
-                          fontSize: 48,
+                          fontSize: 32,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
                           height: 1.08,
@@ -313,7 +338,7 @@ class HomeMobile extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Colors.black,
-                                fontSize: 36,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w400,
                                 height: 1.22,
                               ),
@@ -343,12 +368,23 @@ class HomeMobile extends StatelessWidget {
                             ClipRRect(
                                 borderRadius: BorderRadius.circular(48),
                                 child: Obx(() =>
-                                    Image.asset(
-                                      controller.currentProject.value.imgPath,
-                                      width: context.width,
-                                      height: (context.width * 3) / 4,
-                                      filterQuality: FilterQuality.low,
-                                      isAntiAlias: true,
+                                    PinchZoomReleaseUnzoomWidget(
+                                        minScale: 1,
+                                        maxScale: 3,
+                                        twoFingersOn: () {
+                                          blockScroll = true;
+                                        },
+                                        twoFingersOff: () => Future.delayed(
+                                          PinchZoomReleaseUnzoomWidget.defaultResetDuration,
+                                              () { blockScroll = false; },
+                                        ),
+                                        child: Image.asset(
+                                          controller.currentProject.value.imgPath,
+                                          width: context.width / 1.4,
+                                          height: (context.width / 1.4 * 3) / 4,
+                                          filterQuality: FilterQuality.low,
+                                          isAntiAlias: true,
+                                        )
                                     )
                                 )
                             ),
@@ -373,21 +409,29 @@ class HomeMobile extends StatelessWidget {
                       Wrap(
                         children: [
                           Obx(() =>
-                              FilledButton(
-                                  onPressed: () async {
-                                    if (!await launchUrl(Uri.parse(controller.currentProject.value.url))) {
-                                      throw Exception('Could not launch url');
-                                    }
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 8,
-                                        bottom: 8,
-                                        left: 16,
-                                        right: 16
-                                    ),
-                                    child: Text(controller.currentProject.value.type.name),
-                                  )
+                              SizedBox(
+                                width: double.infinity,
+                                child: Wrap(
+                                  alignment: WrapAlignment.spaceEvenly,
+                                  children: [
+                                    FilledButton(
+                                        onPressed: () async {
+                                          if (!await launchUrl(Uri.parse(controller.currentProject.value.url))) {
+                                            throw Exception('Could not launch url');
+                                          }
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8,
+                                              bottom: 8,
+                                              left: 16,
+                                              right: 16
+                                          ),
+                                          child: Text(controller.currentProject.value.type.name),
+                                        )
+                                    )
+                                  ],
+                                ),
                               )
                           )
                         ],
@@ -411,7 +455,7 @@ class HomeMobile extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
-                            fontSize: 48,
+                            fontSize: 32,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w700,
                             height: 1.08,
@@ -447,7 +491,7 @@ class HomeMobile extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
-                            fontSize: 48,
+                            fontSize: 32,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w700,
                             height: 1.08,

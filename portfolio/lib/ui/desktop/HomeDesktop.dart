@@ -6,6 +6,7 @@ import 'package:portfolio/controller/HomeController.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../util/EmailUtil.dart';
+import '../../util/Util.dart';
 
 class HomeDesktop extends StatelessWidget {
   HomeDesktop({Key? key, required this.controller}) : super(key: key);
@@ -36,7 +37,7 @@ class HomeDesktop extends StatelessWidget {
                         children: [
                           const Padding(padding: EdgeInsets.all(32.0)),
                           SvgPicture.asset(
-                            "assets/svg/anafthdev_logo.svg",
+                            "${releasePath}assets/svg/anafthdev_logo.svg",
                             width: 56,
                             height: 56,
                           )
@@ -54,7 +55,7 @@ class HomeDesktop extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(6.0),
                               child: SvgPicture.asset(
-                                "svg/telegram.svg",
+                                "${releasePath}assets/svg/telegram.svg",
                                 width: 32,
                                 height: 32,
                               ),
@@ -71,7 +72,7 @@ class HomeDesktop extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(6.0),
                               child: SvgPicture.asset(
-                                "svg/twitter.svg",
+                                "${releasePath}assets/svg/twitter.svg",
                                 width: 32,
                                 height: 32,
                               ),
@@ -88,7 +89,7 @@ class HomeDesktop extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(6.0),
                               child: SvgPicture.asset(
-                                "svg/linkedin.svg",
+                                "${releasePath}assets/svg/linkedin.svg",
                                 width: 32,
                                 height: 32,
                               ),
@@ -105,7 +106,7 @@ class HomeDesktop extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(6.0),
                               child: SvgPicture.asset(
-                                "svg/github.svg",
+                                "${releasePath}assets/svg/github.svg",
                                 width: 32,
                                 height: 32,
                               ),
@@ -193,7 +194,7 @@ class HomeDesktop extends StatelessWidget {
                       Padding(
                           padding: const EdgeInsets.all(72),
                           child: SvgPicture.asset(
-                              "svg/android.svg"
+                              "${releasePath}assets/svg/android.svg"
                           )
                       )
                     ],
@@ -226,19 +227,19 @@ class HomeDesktop extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Image.asset(
-                              "images/jetpack_compose.png",
+                              "${releasePath}assets/images/jetpack_compose.png",
                               width: 80,
                               height: 80,
                             ),
                             const Padding(padding: EdgeInsets.all(16)),
                             Image.asset(
-                              "images/android.png",
+                              "${releasePath}assets/images/android.png",
                               width: 80,
                               height: 80,
                             ),
                             const Padding(padding: EdgeInsets.all(16)),
                             SvgPicture.asset(
-                              "svg/kotlin_icon.svg",
+                              "${releasePath}assets/svg/kotlin_icon.svg",
                               width: 80,
                               height: 80,
                             )
@@ -268,14 +269,14 @@ class HomeDesktop extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Image.asset(
-                        "images/dicoding_kotlin.jpg",
+                        "${releasePath}assets/images/dicoding_kotlin.jpg",
                         width: context.width / 2.5,
                         height: (context.width / 2.5 * 3) / 4,
                         filterQuality: FilterQuality.high,
                         isAntiAlias: true,
                       ),
                       Image.asset(
-                        "images/dicoding_android_pemula.jpg",
+                        "${releasePath}assets/images/dicoding_android_pemula.jpg",
                         width: context.width / 2.5,
                         height: (context.width / 2.5 * 3) / 4,
                         filterQuality: FilterQuality.high,
@@ -335,7 +336,7 @@ class HomeDesktop extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(6.0),
                                 child: SvgPicture.asset(
-                                  "svg/arrow_left_new.svg",
+                                  "${releasePath}assets/svg/arrow_left_new.svg",
                                   width: 32,
                                   height: 32,
                                 ),
@@ -361,7 +362,7 @@ class HomeDesktop extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(6.0),
                                 child: SvgPicture.asset(
-                                  "svg/arrow_right_new.svg",
+                                  "${releasePath}assets/svg/arrow_right_new.svg",
                                   width: 32,
                                   height: 32,
                                 ),

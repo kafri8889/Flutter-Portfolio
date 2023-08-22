@@ -5,10 +5,16 @@ import 'package:get/get.dart';
 import 'package:portfolio/controller/HomeController.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../util/EmailUtil.dart';
+
 class HomeDesktop extends StatelessWidget {
-  const HomeDesktop({Key? key, required this.controller}) : super(key: key);
+  HomeDesktop({Key? key, required this.controller}) : super(key: key);
 
   final HomeController controller;
+
+  final emailSenderNameController = TextEditingController();
+  final emailSubjectController = TextEditingController();
+  final emailTextController = TextEditingController();
 
   // This widget is the root of your application.
   @override
@@ -38,6 +44,23 @@ class HomeDesktop extends StatelessWidget {
                       ),
                       Row(
                         children: [
+                          InkWell(
+                            borderRadius: const BorderRadius.all(Radius.circular(100)),
+                            onTap: () async {
+                              if (!await launchUrl(Uri.parse('https://t.me/nplth'))) {
+                                throw Exception('Could not launch telegram url');
+                              }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(6.0),
+                              child: SvgPicture.asset(
+                                "svg/telegram.svg",
+                                width: 32,
+                                height: 32,
+                              ),
+                            ),
+                          ),
+                          const Padding(padding: EdgeInsets.all(8)),
                           InkWell(
                             borderRadius: const BorderRadius.all(Radius.circular(100)),
                             onTap: () async {
@@ -356,7 +379,15 @@ class HomeDesktop extends StatelessWidget {
                                         throw Exception('Could not launch url');
                                       }
                                     },
-                                    child: Text(controller.currentProject.value.type.name)
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 12,
+                                          bottom: 12,
+                                          left: 24,
+                                          right: 24
+                                      ),
+                                      child: Text(controller.currentProject.value.type.name),
+                                    )
                                 )
                             )
                           ],
@@ -364,6 +395,189 @@ class HomeDesktop extends StatelessWidget {
                         const Padding(padding: EdgeInsets.all(16)),
                       ],
                     ),
+                  ),
+                  /**
+                   * Contact us and about me
+                   */
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      /**
+                       * About me
+                       */
+                      Flexible(
+                          child: Container(
+                            width: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.all(32),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'About Me',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                      fontSize: 48,
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w700,
+                                      height: 1.08,
+                                    ),
+                                  ),
+                                  const Padding(padding: EdgeInsets.all(24)),
+                                  const Text(
+                                    "Lorem ipsum",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.50,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                      ),
+                      /**
+                       * Contact us
+                       */
+                      Flexible(
+                          child: Container(
+                            color: Theme.of(context).colorScheme.tertiaryContainer,
+                            child: Padding(
+                                padding: const EdgeInsets.all(32),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Contact Us',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Theme.of(context).primaryColor,
+                                        fontSize: 48,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w700,
+                                        height: 1.08,
+                                      ),
+                                    ),
+                                    const Padding(padding: EdgeInsets.all(24)),
+                                    TextField(
+                                      controller: emailSenderNameController,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w500,
+                                        height: 1.50,
+                                      ),
+                                      decoration: InputDecoration(
+                                        label: const Text("Your Name"),
+                                        fillColor: Theme.of(context).colorScheme.background,
+                                        filled: true,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(100),
+                                          borderSide: BorderSide(
+                                            width: 1,
+                                            color: Theme.of(context).colorScheme.outline
+                                          )
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(100),
+                                            borderSide: BorderSide(
+                                                width: 2,
+                                                color: Theme.of(context).colorScheme.primary
+                                            )
+                                        )
+                                      ),
+                                    ),
+                                    const Padding(padding: EdgeInsets.all(8)),
+                                    TextField(
+                                      controller: emailSubjectController,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w500,
+                                        height: 1.50,
+                                      ),
+                                      decoration: InputDecoration(
+                                        label: const Text("Subject"),
+                                        fillColor: Theme.of(context).colorScheme.background,
+                                        filled: true,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(100),
+                                          borderSide: BorderSide(
+                                            width: 1,
+                                            color: Theme.of(context).colorScheme.outline
+                                          )
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(100),
+                                            borderSide: BorderSide(
+                                                width: 2,
+                                                color: Theme.of(context).colorScheme.primary
+                                            )
+                                        )
+                                      ),
+                                    ),
+                                    const Padding(padding: EdgeInsets.all(8)),
+                                    TextField(
+                                      controller: emailTextController,
+                                      keyboardType: TextInputType.multiline,
+                                      minLines: 4,
+                                      maxLines: 0x7fffffff, // int 32 max value
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w500,
+                                        height: 1.50,
+                                      ),
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        label: const Text("How can I help?"),
+                                        fillColor: Theme.of(context).colorScheme.background,
+                                        filled: true,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(25),
+                                          borderSide: BorderSide(
+                                            width: 1,
+                                            color: Theme.of(context).colorScheme.outline
+                                          )
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(25),
+                                            borderSide: BorderSide(
+                                                width: 2,
+                                                color: Theme.of(context).colorScheme.primary
+                                            )
+                                        )
+                                      ),
+                                    ),
+                                    const Padding(padding: EdgeInsets.all(8)),
+                                    FilledButton(
+                                        onPressed: () {
+                                          EmailUtils().launchEmailSubmission(
+                                              toEmail: "anafnaufalian@gmail.com",
+                                              subject: 'From ${emailSenderNameController.text}, ${emailSubjectController.text}',
+                                              body: emailTextController.text
+                                          );
+                                        },
+                                        child: const Padding(
+                                            padding: EdgeInsets.only(
+                                              top: 12,
+                                              bottom: 12,
+                                              left: 24,
+                                              right: 24
+                                            ),
+                                            child: Text("Send"),
+                                        )
+                                    ),
+                                    const Padding(padding: EdgeInsets.all(96)),
+                                  ],
+                                ),
+                            ),
+                          )
+                      )
+                    ],
                   )
                 ],
               );

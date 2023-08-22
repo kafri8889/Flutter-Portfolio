@@ -63,8 +63,8 @@ flutter:
    assets:
      - assets/images/android.png
      - assets/images/jetpack_compose.png
-     - assets/images/dicoding_android_pemula.png
-     - assets/images/dicoding_kotlin.png
+     - assets/images/dicoding_android_pemula.jpg
+     - assets/images/dicoding_kotlin.jpg
      - assets/images/bookman.png
      - assets/images/calculator.png
      - assets/images/csnake.png
@@ -86,6 +86,7 @@ flutter:
      - assets/svg/github.svg
      - assets/svg/linkedin.svg
      - assets/svg/twitter.svg
+     - assets/svg/telegram.svg
      - assets/svg/android.svg
      - assets/svg/kotlin_icon.svg
 

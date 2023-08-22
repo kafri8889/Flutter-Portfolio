@@ -42,6 +42,23 @@ class HomeMobile extends StatelessWidget {
                         InkWell(
                           borderRadius: const BorderRadius.all(Radius.circular(100)),
                           onTap: () async {
+                            if (!await launchUrl(Uri.parse('https://t.me/nplth'))) {
+                              throw Exception('Could not launch telegram url');
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(6.0),
+                            child: SvgPicture.asset(
+                              "svg/telegram.svg",
+                              width: 32,
+                              height: 32,
+                            ),
+                          ),
+                        ),
+                        const Padding(padding: EdgeInsets.all(8)),
+                        InkWell(
+                          borderRadius: const BorderRadius.all(Radius.circular(100)),
+                          onTap: () async {
                             if (!await launchUrl(Uri.parse('https://twitter.com/anafthdev_'))) {
                               throw Exception('Could not launch twitter url');
                             }
@@ -364,7 +381,10 @@ class HomeMobile extends StatelessWidget {
                       const Padding(padding: EdgeInsets.all(16)),
                     ],
                   ),
-                )
+                ),
+                /**
+                 *
+                 */
               ],
             );
           }

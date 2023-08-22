@@ -5,11 +5,16 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../controller/HomeController.dart';
+import '../../util/EmailUtil.dart';
 
 class HomeMobile extends StatelessWidget {
-  const HomeMobile({Key? key, required this.controller}) : super(key: key);
+  HomeMobile({Key? key, required this.controller}) : super(key: key);
 
   final HomeController controller;
+
+  final emailSenderNameController = TextEditingController();
+  final emailSubjectController = TextEditingController();
+  final emailTextController = TextEditingController();
 
   // This widget is the root of your application.
   @override
@@ -373,7 +378,15 @@ class HomeMobile extends StatelessWidget {
                                       throw Exception('Could not launch url');
                                     }
                                   },
-                                  child: Text(controller.currentProject.value.type.name)
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 8,
+                                        bottom: 8,
+                                        left: 16,
+                                        right: 16
+                                    ),
+                                    child: Text(controller.currentProject.value.type.name),
+                                  )
                               )
                           )
                         ],
@@ -382,9 +395,178 @@ class HomeMobile extends StatelessWidget {
                     ],
                   ),
                 ),
+                const Padding(padding: EdgeInsets.all(32)),
                 /**
-                 *
+                 * About me
                  */
+                Padding(
+                    padding: const EdgeInsets.only(right: 32, left: 32),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'About Me',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 48,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w700,
+                            height: 1.08,
+                          ),
+                        ),
+                        const Padding(padding: EdgeInsets.all(16)),
+                        const Text(
+                          "Lorem ipsum",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            height: 1.50,
+                          ),
+                        )
+                      ],
+                    ),
+                ),
+                const Padding(padding: EdgeInsets.all(32)),
+                /**
+                 * Contact us
+                 */
+                Container(
+                  color: Theme.of(context).colorScheme.tertiaryContainer,
+                  child: Padding(
+                    padding: const EdgeInsets.all(32),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Contact Us',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 48,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w700,
+                            height: 1.08,
+                          ),
+                        ),
+                        const Padding(padding: EdgeInsets.all(16)),
+                        TextField(
+                          controller: emailSenderNameController,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            height: 1.50,
+                          ),
+                          decoration: InputDecoration(
+                              label: const Text("Your Name"),
+                              fillColor: Theme.of(context).colorScheme.background,
+                              filled: true,
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100),
+                                  borderSide: BorderSide(
+                                      width: 1,
+                                      color: Theme.of(context).colorScheme.outline
+                                  )
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100),
+                                  borderSide: BorderSide(
+                                      width: 2,
+                                      color: Theme.of(context).colorScheme.primary
+                                  )
+                              )
+                          ),
+                        ),
+                        const Padding(padding: EdgeInsets.all(8)),
+                        TextField(
+                          controller: emailSubjectController,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            height: 1.50,
+                          ),
+                          decoration: InputDecoration(
+                              label: const Text("Subject"),
+                              fillColor: Theme.of(context).colorScheme.background,
+                              filled: true,
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100),
+                                  borderSide: BorderSide(
+                                      width: 1,
+                                      color: Theme.of(context).colorScheme.outline
+                                  )
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100),
+                                  borderSide: BorderSide(
+                                      width: 2,
+                                      color: Theme.of(context).colorScheme.primary
+                                  )
+                              )
+                          ),
+                        ),
+                        const Padding(padding: EdgeInsets.all(8)),
+                        TextField(
+                          controller: emailTextController,
+                          keyboardType: TextInputType.multiline,
+                          minLines: 4,
+                          maxLines: 0x7fffffff, // int 32 max value
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            height: 1.50,
+                          ),
+                          decoration: InputDecoration(
+                              alignLabelWithHint: true,
+                              label: const Text("How can I help?"),
+                              fillColor: Theme.of(context).colorScheme.background,
+                              filled: true,
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                  borderSide: BorderSide(
+                                      width: 1,
+                                      color: Theme.of(context).colorScheme.outline
+                                  )
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                  borderSide: BorderSide(
+                                      width: 2,
+                                      color: Theme.of(context).colorScheme.primary
+                                  )
+                              )
+                          ),
+                        ),
+                        const Padding(padding: EdgeInsets.all(8)),
+                        FilledButton(
+                            onPressed: () {
+                              EmailUtils().launchEmailSubmission(
+                                  toEmail: "anafnaufalian@gmail.com",
+                                  subject: 'From ${emailSenderNameController.text}, ${emailSubjectController.text}',
+                                  body: emailTextController.text
+                              );
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.only(
+                                  top: 8,
+                                  bottom: 8,
+                                  left: 16,
+                                  right: 16
+                              ),
+                              child: Text("Send"),
+                            )
+                        ),
+                        const Padding(padding: EdgeInsets.all(32)),
+                      ],
+                    ),
+                  ),
+                )
               ],
             );
           }

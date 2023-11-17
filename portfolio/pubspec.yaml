@@ -81,6 +81,9 @@ flutter:
      - assets/images/tictactoe.png
      - assets/images/musicompose.png
      - assets/images/mathq.png
+     - assets/images/skill_item_android.png
+     - assets/images/skill_item_kotlin.png
+     - assets/images/skill_item_jc.png
      - assets/svg/anafthdev_logo.svg
      - assets/svg/arrow_right_new.svg
      - assets/svg/arrow_left_new.svg

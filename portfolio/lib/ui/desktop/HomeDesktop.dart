@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/controller/HomeController.dart';
+import 'package:portfolio/uicomponent/Skills.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../uicomponent/Articles.dart';
+import '../../uicomponent/Certificates.dart';
 import '../../util/EmailUtil.dart';
 import '../../util/Util.dart';
 
@@ -22,6 +25,8 @@ class HomeDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
             itemCount: 1,
             itemBuilder: (BuildContext context, int index) {
               return Column(
@@ -203,87 +208,17 @@ class HomeDesktop extends StatelessWidget {
                   /**
                    * Skills
                    */
-                  Container(
-                    color: Theme.of(context).colorScheme.tertiaryContainer,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const Padding(padding: EdgeInsets.all(16)),
-                        Text(
-                          'Skills',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 48,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w700,
-                            height: 1.08,
-                          ),
-                        ),
-                        const Padding(padding: EdgeInsets.all(16)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              "${releasePath}assets/images/jetpack_compose.png",
-                              width: 80,
-                              height: 80,
-                            ),
-                            const Padding(padding: EdgeInsets.all(16)),
-                            Image.asset(
-                              "${releasePath}assets/images/android.png",
-                              width: 80,
-                              height: 80,
-                            ),
-                            const Padding(padding: EdgeInsets.all(16)),
-                            SvgPicture.asset(
-                              "${releasePath}assets/svg/kotlin_icon.svg",
-                              width: 80,
-                              height: 80,
-                            )
-                          ]
-                        ),
-                        const Padding(padding: EdgeInsets.all(16)),
-                      ],
-                    ),
-                  ),
+                  const Skills(screenType: ScreenType.Desktop),
                   const Padding(padding: EdgeInsets.all(16)),
                   /**
                    * Certificates
                    */
-                  Text(
-                    'Certificates',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 48,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w700,
-                      height: 1.08,
-                    ),
-                  ),
+                  const Certificates(screenType: ScreenType.Desktop),
                   const Padding(padding: EdgeInsets.all(16)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Image.asset(
-                        "${releasePath}assets/images/dicoding_kotlin.jpg",
-                        width: context.width / 2.5,
-                        height: (context.width / 2.5 * 3) / 4,
-                        filterQuality: FilterQuality.high,
-                        isAntiAlias: true,
-                      ),
-                      Image.asset(
-                        "${releasePath}assets/images/dicoding_android_pemula.jpg",
-                        width: context.width / 2.5,
-                        height: (context.width / 2.5 * 3) / 4,
-                        filterQuality: FilterQuality.high,
-                        isAntiAlias: true,
-                      )
-                    ],
-                  ),
+                  /**
+                   * Articles
+                   */
+                  Articles(screenType: ScreenType.Desktop),
                   const Padding(padding: EdgeInsets.all(16)),
                   /**
                    * Projects

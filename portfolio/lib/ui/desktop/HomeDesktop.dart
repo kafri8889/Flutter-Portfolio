@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/controller/HomeController.dart';
+import 'package:portfolio/uicomponent/Projects.dart';
 import 'package:portfolio/uicomponent/Skills.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -223,115 +224,120 @@ class HomeDesktop extends StatelessWidget {
                   /**
                    * Projects
                    */
-                  Container(
-                    color: Theme.of(context).colorScheme.surfaceVariant,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Padding(padding: EdgeInsets.all(16)),
-                        Text(
-                          'Projects',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 48,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w700,
-                            height: 1.08,
-                          ),
-                        ),
-                        const Padding(padding: EdgeInsets.all(16)),
-                        Obx(() =>
-                            AnimatedOpacity(
-                              duration: const Duration(seconds: 1),
-                              opacity: controller.textOpacity.value,
-                              child: Text(
-                                controller.currentProject.value.name,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 36,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.22,
-                                ),
-                              ),
-                            )
-                        ),
-                        const Padding(padding: EdgeInsets.all(16)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            InkWell(
-                              borderRadius: const BorderRadius.all(Radius.circular(100)),
-                              onTap: () {
-                                controller.previous();
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(6.0),
-                                child: SvgPicture.asset(
-                                  "${releasePath}assets/svg/arrow_left_new.svg",
-                                  width: 32,
-                                  height: 32,
-                                ),
-                              ),
-                            ),
-                            ClipRRect(
-                                borderRadius: BorderRadius.circular(48),
-                                child: Obx(() =>
-                                    Image.asset(
-                                      controller.currentProject.value.imgPath,
-                                      width: context.width / 2,
-                                      height: (context.width / 2 * 3) / 4,
-                                      filterQuality: FilterQuality.high,
-                                      isAntiAlias: true,
-                                    )
-                                )
-                            ),
-                            InkWell(
-                              borderRadius: const BorderRadius.all(Radius.circular(100)),
-                              onTap: () {
-                                controller.next();
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(6.0),
-                                child: SvgPicture.asset(
-                                  "${releasePath}assets/svg/arrow_right_new.svg",
-                                  width: 32,
-                                  height: 32,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Padding(padding: EdgeInsets.all(16)),
-                        Wrap(
-                          children: [
-                            Obx(() =>
-                                FilledButton(
-                                    onPressed: () async {
-                                      if (!await launchUrl(Uri.parse(controller.currentProject.value.url))) {
-                                        throw Exception('Could not launch url');
-                                      }
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 12,
-                                          bottom: 12,
-                                          left: 24,
-                                          right: 24
-                                      ),
-                                      child: Text(controller.currentProject.value.type.name),
-                                    )
-                                )
-                            )
-                          ],
-                        ),
-                        const Padding(padding: EdgeInsets.all(16)),
-                      ],
-                    ),
+                  Projects(
+                    screenType: ScreenType.Desktop,
+                    controller: controller,
                   ),
+                  const Padding(padding: EdgeInsets.all(16)),
+                  // Container(
+                  //   color: Theme.of(context).colorScheme.surfaceVariant,
+                  //   child: Column(
+                  //     mainAxisAlignment: MainAxisAlignment.center,
+                  //     crossAxisAlignment: CrossAxisAlignment.center,
+                  //     children: [
+                  //       const Padding(padding: EdgeInsets.all(16)),
+                  //       Text(
+                  //         'Projects',
+                  //         textAlign: TextAlign.center,
+                  //         style: TextStyle(
+                  //           color: Theme.of(context).primaryColor,
+                  //           fontSize: 48,
+                  //           fontFamily: 'Inter',
+                  //           fontWeight: FontWeight.w700,
+                  //           height: 1.08,
+                  //         ),
+                  //       ),
+                  //       const Padding(padding: EdgeInsets.all(16)),
+                  //       Obx(() =>
+                  //           AnimatedOpacity(
+                  //             duration: const Duration(seconds: 1),
+                  //             opacity: controller.textOpacity.value,
+                  //             child: Text(
+                  //               controller.currentProject.value.name,
+                  //               textAlign: TextAlign.center,
+                  //               style: const TextStyle(
+                  //                 color: Colors.black,
+                  //                 fontSize: 36,
+                  //                 fontWeight: FontWeight.w400,
+                  //                 height: 1.22,
+                  //               ),
+                  //             ),
+                  //           )
+                  //       ),
+                  //       const Padding(padding: EdgeInsets.all(16)),
+                  //       Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //         crossAxisAlignment: CrossAxisAlignment.center,
+                  //         children: [
+                  //           InkWell(
+                  //             borderRadius: const BorderRadius.all(Radius.circular(100)),
+                  //             onTap: () {
+                  //               controller.previous();
+                  //             },
+                  //             child: Padding(
+                  //               padding: const EdgeInsets.all(6.0),
+                  //               child: SvgPicture.asset(
+                  //                 "${releasePath}assets/svg/arrow_left_new.svg",
+                  //                 width: 32,
+                  //                 height: 32,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //           ClipRRect(
+                  //               borderRadius: BorderRadius.circular(48),
+                  //               child: Obx(() =>
+                  //                   Image.asset(
+                  //                     controller.currentProject.value.imgPath,
+                  //                     width: context.width / 2,
+                  //                     height: (context.width / 2 * 3) / 4,
+                  //                     filterQuality: FilterQuality.high,
+                  //                     isAntiAlias: true,
+                  //                   )
+                  //               )
+                  //           ),
+                  //           InkWell(
+                  //             borderRadius: const BorderRadius.all(Radius.circular(100)),
+                  //             onTap: () {
+                  //               controller.next();
+                  //             },
+                  //             child: Padding(
+                  //               padding: const EdgeInsets.all(6.0),
+                  //               child: SvgPicture.asset(
+                  //                 "${releasePath}assets/svg/arrow_right_new.svg",
+                  //                 width: 32,
+                  //                 height: 32,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //       const Padding(padding: EdgeInsets.all(16)),
+                  //       Wrap(
+                  //         children: [
+                  //           Obx(() =>
+                  //               FilledButton(
+                  //                   onPressed: () async {
+                  //                     if (!await launchUrl(Uri.parse(controller.currentProject.value.url))) {
+                  //                       throw Exception('Could not launch url');
+                  //                     }
+                  //                   },
+                  //                   child: Padding(
+                  //                     padding: const EdgeInsets.only(
+                  //                         top: 12,
+                  //                         bottom: 12,
+                  //                         left: 24,
+                  //                         right: 24
+                  //                     ),
+                  //                     child: Text(controller.currentProject.value.type.name),
+                  //                   )
+                  //               )
+                  //           )
+                  //         ],
+                  //       ),
+                  //       const Padding(padding: EdgeInsets.all(16)),
+                  //     ],
+                  //   ),
+                  // ),
                   /**
                    * Contact us and about me
                    */

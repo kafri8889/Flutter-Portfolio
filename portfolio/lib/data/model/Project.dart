@@ -2,13 +2,15 @@
 import '../ProjectUrlType.dart';
 
 class Project {
-  String name;
+  String title;
   String imgPath;
   String url;
+  String description;
   ProjectUrlType type;
 
   Project({
-    required this.name,
+    required this.title,
+    required this.description,
     required this.imgPath,
     required this.url,
     required this.type

@@ -35,84 +35,84 @@ class LocalProjectDataProvider {
       ),
       Project(
           title: "Bookmark Manager",
-          description: "",
+          description: "A bookmarking application that is useful for saving urls, you can also group bookmarks with the Bookmark Collection feature. Don't be afraid to lose your bookmarks, because you can also back up and restore bookmarks.",
           imgPath: "assets/images/bookman.png",
           url: "https://play.google.com/store/apps/details?id=com.anafthdev.bookman",
           type: ProjectUrlType.playStore
       ),
       Project(
           title: "Compose Material Design 3",
-          description: "",
+          description: "An application to preview components from Material Design 3 in Jetpack Compose. This application also has features to customize components such as adding round corners, changing colors, etc.",
           imgPath: "assets/images/md3compose.png",
           url: "https://play.google.com/store/apps/details?id=com.anafthdev.md3compose",
           type: ProjectUrlType.playStore
       ),
       Project(
           title: "Saku: Compose Sudoku",
-          description: "",
+          description: "Sudoku puzzle app. This application is made using Jetpack Compose and has many features such as pencil, print board to pdf, undo/redo, highlight same number, etc.",
           imgPath: "assets/images/saku.png",
           url: "https://github.com/kafri8889/Saku-Compose-Sudoku",
           type: ProjectUrlType.gitHub
       ),
       Project(
           title: "Compose Classic Snake Game",
-          description: "",
+          description: "Classic snake game app, in this app you can set movement delay, easing animation, easing animation delay, and set how big the tiles are.",
           imgPath: "assets/images/csnake.png",
           url: "https://github.com/kafri8889/Compose-Classic-Snake-Game",
           type: ProjectUrlType.gitHub
       ),
       Project(
           title: "TicTacToe",
-          description: "",
+          description: "TicTacToe App",
           imgPath: "assets/images/tictactoe.png",
           url: "https://github.com/kafri8889/Compose-TicTacToe",
           type: ProjectUrlType.gitHub
       ),
-      Project(
-          title: "Dujer: Duit Manajer",
-          description: "",
-          imgPath: "assets/images/dujer.png",
-          url: "https://play.google.com/store/apps/details?id=com.anafthdev.dujer",
-          type: ProjectUrlType.playStore
-      ),
-      Project(
-          title: "Remind Me",
-          description: "",
-          imgPath: "assets/images/remindme.png",
-          url: "https://github.com/kafri8889/Remind-Me",
-          type: ProjectUrlType.gitHub
-      ),
+      // Project(
+      //     title: "Dujer: Duit Manajer",
+      //     description: "",
+      //     imgPath: "assets/images/dujer.png",
+      //     url: "https://play.google.com/store/apps/details?id=com.anafthdev.dujer",
+      //     type: ProjectUrlType.playStore
+      // ),
+      // Project(
+      //     title: "Remind Me",
+      //     description: "",
+      //     imgPath: "assets/images/remindme.png",
+      //     url: "https://github.com/kafri8889/Remind-Me",
+      //     type: ProjectUrlType.gitHub
+      // ),
       Project(
           title: "N Puzzle",
-          description: "",
+          description: "The sliding puzzle app (15 Puzzles) was created using Jetpack Compose. This game has 5 modes, namely very easy (3x3), easy (4x4), medium (5x5), difficult (6x6), and very difficult (7x7).",
           imgPath: "assets/images/npuzzle.png",
           url: "https://play.google.com/store/apps/details?id=com.anafthdev.npuzzle",
           type: ProjectUrlType.playStore
       ),
       Project(
           title: "Staver: Whatsapp Status Saver",
-          description: "",
+          description: "App to save whatsapp status",
           imgPath: "assets/images/staver.png",
           url: "https://play.google.com/store/apps/details?id=com.anafthdev.staver",
           type: ProjectUrlType.playStore
       ),
       Project(
           title: "Calculator Compose",
-          description: "",
+          description: "Simple calculator created using Jetpack Compose",
           imgPath: "assets/images/calculator.png",
           url: "https://github.com/kafri8889/Calculator-Compose",
           type: ProjectUrlType.gitHub
       ),
       Project(
           title: "Compose Material Component",
-          description: "",
+          description: "An application to preview components from Material Design 2 in Jetpack Compose.",
           imgPath: "assets/images/md2compose.png",
           url: "https://play.google.com/store/apps/details?id=com.anafthdev.jetpackcomposetutorial",
           type: ProjectUrlType.playStore
       ),
       Project(
           title: "Material Design 3 Android",
-          description: "",
+          description: "An application to preview components from Material Design 3 in android view.",
           imgPath: "assets/images/md3android.png",
           url: "https://play.google.com/store/apps/details?id=com.anafthdev.materialdesign3",
           type: ProjectUrlType.playStore

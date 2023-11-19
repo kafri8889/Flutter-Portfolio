@@ -27,7 +27,7 @@ class ProjectItem extends StatelessWidget {
                     topLeft: Radius.circular(8),
                     topRight: Radius.circular(8)
                 ),
-                child: Image.network(
+                child: Image.asset(
                   project.imgPath,
                   fit: BoxFit.fitWidth,
                 ),

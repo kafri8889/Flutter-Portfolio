@@ -1,12 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
-import '../../controller/HomeController.dart';
-
 class HomeMobile extends StatelessWidget {
-  HomeMobile({Key? key, required this.controller}) : super(key: key);
+  HomeMobile({super.key});
 
-  final HomeController controller;
   bool blockScroll = false;
 
   final emailSenderNameController = TextEditingController();

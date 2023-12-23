@@ -1,3 +1,4 @@
+import 'dart:convert';
 
 class Article {
   String name;
@@ -11,4 +12,15 @@ class Article {
     required this.url,
     required this.date
   });
+  
+  factory Article.fromJson(Map<String, dynamic> json) => Article(
+      name: json["name"],
+      imgPath: json["imgPath"],
+      url: json["url"],
+      date: json["date"]
+  );
 }
+
+List<Article> articlesFromJson(String str) => (json.decode(str) as List)
+    .map((e) => Article.fromJson(e))
+    .toList();

@@ -2,7 +2,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/controller/HomeController.dart';
 import 'package:portfolio/uicomponent/Projects.dart';
 import 'package:portfolio/uicomponent/Skills.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,9 +12,7 @@ import '../../util/EmailUtil.dart';
 import '../../util/Util.dart';
 
 class HomeDesktop extends StatelessWidget {
-  HomeDesktop({Key? key, required this.controller}) : super(key: key);
-
-  final HomeController controller;
+  HomeDesktop({super.key});
 
   final emailSenderNameController = TextEditingController();
   final emailSubjectController = TextEditingController();
@@ -219,14 +216,13 @@ class HomeDesktop extends StatelessWidget {
                   /**
                    * Articles
                    */
-                  Articles(screenType: ScreenType.Desktop),
+                  const Articles(screenType: ScreenType.Desktop),
                   const Padding(padding: EdgeInsets.all(16)),
                   /**
                    * Projects
                    */
-                  Projects(
-                    screenType: ScreenType.Desktop,
-                    controller: controller,
+                  const Projects(
+                    screenType: ScreenType.Desktop
                   ),
                   const Padding(padding: EdgeInsets.all(16)),
                   /**

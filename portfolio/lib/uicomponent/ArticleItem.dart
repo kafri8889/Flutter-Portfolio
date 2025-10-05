@@ -1,95 +1,123 @@
-
 import 'package:flutter/material.dart';
 import 'package:portfolio/data/model/Article.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ArticleItem extends StatelessWidget {
+class ArticleItem extends StatefulWidget {
   const ArticleItem({super.key, required this.article});
 
   final Article article;
 
   @override
+  State<ArticleItem> createState() => _ArticleItemState();
+}
+
+class _ArticleItemState extends State<ArticleItem> {
+  bool _isHovering = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      fit: StackFit.expand,
-      children: [
-        const FractionallySizedBox(
-          widthFactor: 1,
-          heightFactor: 2.8/4,
-          child: Card(
-              shadowColor: Color.fromARGB(0, 0, 0, 0)
-          ),
+    final theme = Theme.of(context);
+
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovering = true),
+      onExit: (_) => setState(() => _isHovering = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: _isHovering
+                    ? theme.colorScheme.primary.withOpacity(0.4)
+                    : theme.colorScheme.shadow.withOpacity(0.1),
+                blurRadius: _isHovering ? 12 : 4,
+                offset: Offset(0, _isHovering ? 4 : 2),
+              ),
+            ],
+            border: Border.all(
+              color: _isHovering ? theme.colorScheme.primary : theme.colorScheme.outlineVariant,
+              width: _isHovering ? 2 : 1,
+            )
         ),
-        Padding(
-          padding: const EdgeInsets.all(16),
+        child: InkWell(
+          onTap: () async {
+            if (!await launchUrl(Uri.parse(widget.article.url))) {
+              throw Exception('Could not launch article url');
+            }
+          },
+          borderRadius: BorderRadius.circular(16),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Flexible(
-                  flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8, right: 8),
-                    child: SizedBox.expand(
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.all(Radius.circular(8)),
-                        child: Image.network(
-                          article.imgPath,
-                          fit: BoxFit.fitWidth,
+              SizedBox(
+                width: double.infinity,
+                child: AspectRatio(
+                  aspectRatio: 2.5 / 1,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15)),
+                    child: Image.network(
+                      widget.article.imgPath,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        color: theme.colorScheme.surfaceContainerHighest,
+                        child: Center(
+                          child: Icon(Icons.broken_image, color: theme.colorScheme.onSurfaceVariant),
                         ),
                       ),
                     ),
-                  )
+                  ),
+                ),
               ),
-              Flexible(
-                  flex: 1,
-                  child: SizedBox.expand(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(padding: EdgeInsets.all(8)),
-                        Text(article.date),
-                        Text(
-                          article.name,
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold
-                          ),
-                        )
-                      ],
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+                child: Text(
+                  widget.article.date,
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Text(
+                    widget.article.name,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.onSurface,
                     ),
-                  )
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ),
-              Flexible(
-                  flex: 1,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                          "Read more",
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: Theme.of(context).colorScheme.primary
-                        ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    Text(
+                      "Read article",
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        color: theme.colorScheme.primary,
+                        fontWeight: FontWeight.bold,
                       ),
-                      const Spacer(flex: 1),
-                      IconButton(
-                          onPressed: () async {
-                            if (!await launchUrl(Uri.parse(article.url))) {
-                              throw Exception('Could not launch telegram url');
-                            }
-                          },
-                          icon: Icon(
-                            Icons.arrow_right_alt_outlined,
-                            color: Theme.of(context).colorScheme.primary,
-                            size: 32,
-                          )
-                      )
-                    ],
-                  )
+                    ),
+                    const SizedBox(width: 8),
+                    Icon(
+                      Icons.arrow_right_alt_outlined,
+                      color: theme.colorScheme.primary,
+                      size: 24,
+                    )
+                  ],
+                ),
               )
             ],
           ),
-        )
-      ],
+        ),
+      ),
     );
   }
-
 }
